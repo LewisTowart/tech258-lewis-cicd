@@ -158,6 +158,10 @@ Once we have made this change push the new changes to the remote repo on github
 
 If done correct similar to before a #2 build should appear on the Jenkins UI and should also have a successful blue dot next to it.
 
+You can go to your github repo and into the webhook setting. Click on edit for the webhook you have set up then into recent deliveries to see what's been happening as well.
+
+![alt text](Markdown_Images/recent-del.PNG)
+
 ## Creating a Github and Jenkins webhook
 
 ### Step 1.
