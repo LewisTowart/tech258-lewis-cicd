@@ -62,4 +62,65 @@ A real life example would be when a movie has released they are delivered to the
 
 jenkins is an open source automation server i
 
+http://3.9.14.9:8080/login?from=%2F
+
+## Create a Jenkins Build
+
+### Step 1.
+
+Login using the below link.
+
+http://3.9.14.9:8080/login?from=%2F
+
+### Step 2.
+
+Click on create new items and select free style project. Name it something sensible like lewis-ci then click okay.
+
+### Step 3.
+
+Now continue down to Office 365 Connector and select restrict where this project can be run. Then in the search box look for sparta-ubuntu-node. You will want to delete the empty space at the end and select the option again for a second time.
+
+
+Step 4.
+
+Move down to Source code management and select git. Here you want to add the http link from your git repo into the repositry URL box.
+
+You will also need to links the correct credentials mine being lewis-jenkins.
+
+Change the branch specifier to main which is where the app is located.
+
+Step 5.
+
+Moving onto build triggers this is where we are automating the response form the webhook. You are going to want to follow the step in the webhook section and then return to this part. Now select the box that says Github hook trigger.
+
+Step 5.
+
+Now scrolling down to build environment we want to select the tick box for provide node and npm bin. This is so that node will be installed on our virtual machine.
+
+Step 6.
+
+Next we are adding in the build section, click the add option and select excute shell. The below code need to go in the command box to test the app.
+
+```
+cd app
+npm install
+npm test
+```
+
+Step 7.
+
+Now you can click save to move to the next screen.
+
+Here we want to first manually test our build by clicking the build now option. If everything has worked you should see a #1 with a blue dot next to it to indicate a success with no issues.
+
+You can check this by click the arrow next to the #1 which appears when you hover over it and selecting console output.
+
+Step 8.
+
+To test that our webhook is working we need to make a change to our local repo that is assocaited with out Jenkins build.
+
+Once we have made this change push the new changes to the remote repo on github
+
+If done correct similar to before a #2 build should appear on the Jenkins UI and should also have a successful blue dot next to it.
+
 
