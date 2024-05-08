@@ -88,32 +88,47 @@ http://3.9.14.9:8080/login?from=%2F
 
 ### Step 2.
 
-Click on create new items and select free style project. Name it something sensible like lewis-ci then click okay.
+Click on new item and select free style project. Name it something sensible like lewis-ci then click okay.
+
+![alt text](Markdown_Images/new-item.PNG)
+
+![alt text](Markdown_Images/freestyle.PNG)
 
 ### Step 3.
 
 Now continue down to Office 365 Connector and select restrict where this project can be run. Then in the search box look for sparta-ubuntu-node. You will want to delete the empty space at the end and select the option again for a second time.
 
+![alt text](Markdown_Images/office-connector.PNG)
 
 ### Step 4.
 
-Move down to Source code management and select git. Here you want to add the http link from your git repo into the repositry URL box.
+Move down to Source code management and select git. Here you want to add the http link from your git repo into the repository URL box.
+
+![alt text](Markdown_Images/repo-link.PNG)
 
 You will also need to links the correct credentials mine being lewis-jenkins.
 
 Change the branch specifier to main which is where the app is located.
 
+![alt text](Markdown_Images/source-code.PNG)
+
 ### Step 5.
 
 Moving onto build triggers this is where we are automating the response form the webhook. You are going to want to follow the step in the webhook section and then return to this part. Now select the box that says Github hook trigger.
+
+![alt text](Markdown_Images/build-trigger.PNG)
 
 ### Step 6.
 
 Now scrolling down to build environment we want to select the tick box for provide node and npm bin. This is so that node will be installed on our virtual machine.
 
+![alt text](Markdown_Images/build-env.PNG)
+
 ### Step 7.
 
-Next we are adding in the build section, click the add option and select excute shell. The below code need to go in the command box to test the app.
+Next we are adding in the build section, click the add option and select execute shell. The below code need to go in the command box to test the app.
+
+![alt text](Markdown_Images/build-step.PNG)
 
 ```
 cd app
@@ -121,17 +136,23 @@ npm install
 npm test
 ```
 
+![alt text](Markdown_Images/code.PNG)
+
 ### Step 8.
 
 Now you can click save to move to the next screen.
 
 Here we want to first manually test our build by clicking the build now option. If everything has worked you should see a #1 with a blue dot next to it to indicate a success with no issues.
 
+![alt text](Markdown_Images/build-now.PNG)
+
 You can check this by click the arrow next to the #1 which appears when you hover over it and selecting console output.
+
+![alt text](Markdown_Images/console-output.PNG)
 
 ### Step 9.
 
-To test that our webhook is working we need to make a change to our local repo that is assocaited with out Jenkins build.
+To test that our webhook is working we need to make a change to our local repo that is associated with out Jenkins build.
 
 Once we have made this change push the new changes to the remote repo on github
 
@@ -143,11 +164,13 @@ If done correct similar to before a #2 build should appear on the Jenkins UI and
 
 First we are going to head over to our github repo that we want to associate the webhook with.
 
-Once we are there we are going to click on settings.
+Once we are there we are going to click on settings. (check image in step 2)
 
 ### Step 2.
 
 In this list we can see webhooks on the left side click on this option. Next you want to click on the option near the top right that says add webhook.
+
+![alt text](Markdown_Images/add-webhook.PNG)
 
 ### Step 3.
 
@@ -156,5 +179,7 @@ In the payload URL box you are going to want to paste the link of your build/Jen
 http://3.9.14.9:8080/github-webhook/
 
 Finally you are going to want to select when you want this webhook to trigger in this case just select push event for now. Also select the box that says active to deliver event details when the hook is triggered.
+
+![alt text](Markdown_Images/payloadurl.PNG)
 
 You can now return to creating your Jenkins build as the webhook will be associated with it if you've used the corresponding link.
