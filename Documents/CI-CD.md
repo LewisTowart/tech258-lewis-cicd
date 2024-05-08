@@ -155,6 +155,6 @@ In the payload URL box you are going to want to paste the link of your build/Jen
 
 http://3.9.14.9:8080/github-webhook/
 
-Finally you are going to want to select when you want this webhook to trigger in this case just select push event for now. Also select the box that says active to deliver event deatils when the hook is triggered.
+Finally you are going to want to select when you want this webhook to trigger in this case just select push event for now. Also select the box that says active to deliver event details when the hook is triggered.
 
-You can now return to creating your Jenkins build as the webhook will be assocaited with it if you've used the corresponding link.
+You can now return to creating your Jenkins build as the webhook will be associated with it if you've used the corresponding link.
