@@ -60,6 +60,6 @@ As for deployment this can be done automatically within the CI/CD pipeline with 
 
 A real life example would be when a movie has released they are delivered to the cinema weeks before they are actually airing. This can be helpful to check if there are an unforeseen issues with them. When the time comes they will then say this movie is airing come and see if so the user/member of the public can come and watch the film.
 
-jenkins is an open source automation server
+jenkins is an open source automation server i
 
 
