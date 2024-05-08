@@ -6,6 +6,20 @@
   - [Why, when and where do we create a CI/CD pipeline?](#why-when-and-where-do-we-create-a-cicd-pipeline)
     - [Nodes](#nodes)
   - [Difference between Delivery and Deployment in prod?](#difference-between-delivery-and-deployment-in-prod)
+  - [Create a Jenkins Build](#create-a-jenkins-build)
+    - [Step 1.](#step-1)
+    - [Step 2.](#step-2)
+    - [Step 3.](#step-3)
+    - [Step 4.](#step-4)
+    - [Step 5.](#step-5)
+    - [Step 6.](#step-6)
+    - [Step 7.](#step-7)
+    - [Step 8.](#step-8)
+    - [Step 9.](#step-9)
+  - [Creating a Github and Jenkins webhook](#creating-a-github-and-jenkins-webhook)
+    - [Step 1.](#step-1-1)
+    - [Step 2.](#step-2-1)
+    - [Step 3.](#step-3-1)
 
 
 # CI/CD
@@ -81,7 +95,7 @@ Click on create new items and select free style project. Name it something sensi
 Now continue down to Office 365 Connector and select restrict where this project can be run. Then in the search box look for sparta-ubuntu-node. You will want to delete the empty space at the end and select the option again for a second time.
 
 
-Step 4.
+### Step 4.
 
 Move down to Source code management and select git. Here you want to add the http link from your git repo into the repositry URL box.
 
@@ -89,15 +103,15 @@ You will also need to links the correct credentials mine being lewis-jenkins.
 
 Change the branch specifier to main which is where the app is located.
 
-Step 5.
+### Step 5.
 
 Moving onto build triggers this is where we are automating the response form the webhook. You are going to want to follow the step in the webhook section and then return to this part. Now select the box that says Github hook trigger.
 
-Step 5.
+### Step 6.
 
 Now scrolling down to build environment we want to select the tick box for provide node and npm bin. This is so that node will be installed on our virtual machine.
 
-Step 6.
+### Step 7.
 
 Next we are adding in the build section, click the add option and select excute shell. The below code need to go in the command box to test the app.
 
@@ -107,7 +121,7 @@ npm install
 npm test
 ```
 
-Step 7.
+### Step 8.
 
 Now you can click save to move to the next screen.
 
@@ -115,7 +129,7 @@ Here we want to first manually test our build by clicking the build now option. 
 
 You can check this by click the arrow next to the #1 which appears when you hover over it and selecting console output.
 
-Step 8.
+### Step 9.
 
 To test that our webhook is working we need to make a change to our local repo that is assocaited with out Jenkins build.
 
@@ -123,4 +137,24 @@ Once we have made this change push the new changes to the remote repo on github
 
 If done correct similar to before a #2 build should appear on the Jenkins UI and should also have a successful blue dot next to it.
 
+## Creating a Github and Jenkins webhook
 
+### Step 1.
+
+First we are going to head over to our github repo that we want to associate the webhook with.
+
+Once we are there we are going to click on settings.
+
+### Step 2.
+
+In this list we can see webhooks on the left side click on this option. Next you want to click on the option near the top right that says add webhook.
+
+### Step 3.
+
+In the payload URL box you are going to want to paste the link of your build/Jenkins environment URL with /github-webhook/ at the end. An example link can be seen below.
+
+http://3.9.14.9:8080/github-webhook/
+
+Finally you are going to want to select when you want this webhook to trigger in this case just select push event for now. Also select the box that says active to deliver event deatils when the hook is triggered.
+
+You can now return to creating your Jenkins build as the webhook will be assocaited with it if you've used the corresponding link.
