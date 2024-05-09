@@ -242,7 +242,7 @@ I then did the office 365 connected sparta-ubuntu-node
 
 In source code management I selected git used the ssh link git@github.com:LewisTowart/tech258-lewis-cicd-app.git
 
-![alt text](Markdown_Images/source-code.PNG)
+![alt text](Markdown_Images/source-job2.PNG)
 
 We're focusing on the */dev branch
 
