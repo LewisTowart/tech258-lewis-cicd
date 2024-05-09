@@ -234,21 +234,21 @@ I can now follow my job build from earlier but using */dev now.
 
 ![alt text](Markdown_Images/job-2.png)
 
-If the job completes have a new job to merge that new app code on the dev branch with old code on the main branch
+If the job completes have a new job to merge that new tested app code on the dev branch with old code on the main branch
 
-I first had to create a new job I called it lewis-ci-merge
+First we need to create a new job I called it lewis-ci-merge
 
-I then did the office 365 connected sparta-ubuntu-node
+Then I setup office 365 connected to restrict where the project can be run to sparta-ubuntu-node
 
-In source code management I selected git used the ssh link git@github.com:LewisTowart/tech258-lewis-cicd-app.git
+Next in the source code management sections I selected git and used the ssh link git@github.com:LewisTowart/tech258-lewis-cicd-app.git
+
+We're focusing on the */dev branch as the initial branch we want to merge with our main.
 
 ![alt text](Markdown_Images/source-job2.PNG)
 
-We're focusing on the */dev branch
+We now need to add an additional behavior, the name will be origin, the branch we are merging into is main, default then --ff
 
-I added a additional behaviour, the name is origin, branch is main, default then --ff
-
-Post build actions we want to set up git publisher and select push only if build succeeds and merge results.
+For post build actions we want to set up git publisher and select push only if build succeeds and merge results.
 
 ![alt text](Markdown_Images/post-build-job2.PNG)
 
