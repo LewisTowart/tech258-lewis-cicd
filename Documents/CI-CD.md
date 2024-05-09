@@ -26,6 +26,7 @@
     - [Step 2.](#step-2-1)
     - [Step 3.](#step-3-1)
   - [Jenkins Jobs](#jenkins-jobs)
+    - [CI](#ci-2)
     - [Job 1](#job-1)
     - [Job 2](#job-2)
     - [Job 3](#job-3)
@@ -223,6 +224,8 @@ Jenkins is able to complete jobs similar to the one setup earlier and then creat
 Here is a breakdown of the jobs 1 to 3 which are part of automating the continuous integration side of the CI/CD pipeline.
 
 ![alt text](Markdown_Images/jobs.png)
+
+### CI
 
 ### Job 1
 
