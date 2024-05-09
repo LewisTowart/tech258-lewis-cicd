@@ -28,7 +28,7 @@
     - [Job 1](#job-1)
     - [Job 2](#job-2)
     - [Job 3](#job-3)
-    - [CD..](#cd-1)
+    - [CD...](#cd-1)
     - [Job 4](#job-4)
       - [Notes](#notes)
 
@@ -264,7 +264,7 @@ Now we need to get the main branch of code and push it to the production environ
 - Now I need to SSH into the instance to see if the job has been successful and the newly merged app code is present
 - Next I need to now prepare the dependencies for the app to run update, upgrade, nginx?, node.js, pm2?
 
-### CD..
+### CD...
 
 ### Job 4
 
