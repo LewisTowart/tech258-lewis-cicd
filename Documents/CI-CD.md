@@ -6,6 +6,9 @@
   - [Why, when and where do we create a CI/CD pipeline?](#why-when-and-where-do-we-create-a-cicd-pipeline)
     - [Nodes](#nodes)
   - [Difference between Delivery and Deployment in prod?](#difference-between-delivery-and-deployment-in-prod)
+  - [Jenkins](#jenkins)
+    - [What is Jenkins?](#what-is-jenkins)
+    - [Why use Jenkins over other tools? (benefits, differences)](#why-use-jenkins-over-other-tools-benefits-differences)
   - [Create a Jenkins Build](#create-a-jenkins-build)
     - [Step 1.](#step-1)
     - [Step 2.](#step-2)
@@ -20,6 +23,7 @@
     - [Step 1.](#step-1-1)
     - [Step 2.](#step-2-1)
     - [Step 3.](#step-3-1)
+  - [Jenkins Jobs](#jenkins-jobs)
     - [Job 1](#job-1)
     - [Job 2](#job-2)
     - [Job 3](#job-3)
@@ -80,6 +84,15 @@ As for deployment this can be done automatically within the CI/CD pipeline with 
 A real life example would be when a movie has released they are delivered to the cinema weeks before they are actually airing. This can be helpful to check if there are any unforeseen issues with them. When the time comes they will then say this movie is airing come and see if so the user/member of the public can come and watch the film.
 
 http://3.9.14.9:8080/login?from=%2F
+
+## Jenkins
+
+### What is Jenkins?
+
+Jenkins is a very powerful open source automation server. It can automate the process of building, testing and deploying software which enables teams to quickly and reliably deliver software.
+
+### Why use Jenkins over other tools? (benefits, differences)
+
 
 ## Create a Jenkins Build
 
@@ -193,9 +206,19 @@ Finally you are going to want to select when you want this webhook to trigger in
 
 You can now return to creating your Jenkins build as the webhook will be associated with it if you've used the corresponding link.
 
+## Jenkins Jobs
+
+Jenkins is able to complete jobs similar to the one setup earlier and then create a build action. This is when one job is complete and was successful it can then start another job. In this process we are going to automate the steps from the push of new code to the deployment of the app automatically.
+
 ### Job 1
 
 I need to create a Dev branch for the app, make a change locally and test that the job completed.
+
+I have created a new dev branch by using the below command
+
+```
+git checkout -b dev
+```
 
 ### Job 2
 
@@ -219,6 +242,7 @@ This job now needs to be able to deploy the app and run it automatically
 - I'm going to need port port 80 http and 3000 open for now while testing but I do have the reverse proxy code available
 - I need to ssh into the app and test the deployment manually as I need the app to start in the background as to not timeout jenkins and lock the console
 - I could use pm2 but I need to see what the code was to run in the background I believe it was just one symbol after the run command
+- When I've tested it I should be able to basically use my script from running the app
 
 
 #### Notes
@@ -270,9 +294,9 @@ errors - port 22 isnt open - SG required didn't allow jenkins for port 8080
 automate the process of yes to fingerprint on ssh
 copy code is it copied ssh in confirm
 then manually npm install and npm start
-22 ssh, 8080 jenkins, 3000 nod.js, 80 http
+22 ssh, 8080 jenkins, 3000 node.js, 80 http
 
-add to ci job ssh agent to get the key for aws
+add to ci job ssh agent to get the key for aws (Dan has done)
 
 create 4th job in jenkins to deploy the app - run it automatically 
-don't run npm start use in background
+don't run npm start use in background or will timeout jenkins
