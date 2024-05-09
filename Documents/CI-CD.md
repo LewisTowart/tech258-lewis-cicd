@@ -228,13 +228,25 @@ I have created a new dev branch by using the below command
 git checkout -b dev
 ```
 
+I can now follow my job build from earlier but using */dev now.
+
 ### Job 2
 
 ![alt text](Markdown_Images/job-2.png)
 
 If the job completes have a new job to merge that new app code on the dev branch with old code on the main branch
 
-Merge option on the job?
+I first had to create a new job I called it lewis-ci-merge
+
+I then did the office 365 coneected sparta-ubuntu-node
+
+In source code management I selected git used the ssh link git@github.com:LewisTowart/tech258-lewis-cicd-app.git
+
+We're focusing on the */dev brnach
+
+I added a additional behaviour, the name is origin, branch is main, default then --ff
+
+Post build 
 
 ### Job 3
 
