@@ -1,4 +1,5 @@
 - [CI/CD](#cicd)
+  - [Project Introduction](#project-introduction)
   - [What is CI/CD?](#what-is-cicd)
     - [CI](#ci)
     - [CD](#cd)
@@ -28,12 +29,16 @@
     - [Job 1](#job-1)
     - [Job 2](#job-2)
     - [Job 3](#job-3)
-    - [CD...](#cd-1)
+    - [CD](#cd-1)
     - [Job 4](#job-4)
       - [Notes](#notes)
 
 
 # CI/CD
+
+## Project Introduction
+
+My goal with this project is to automate the process from the initial commit to the dev branch on github to the deployment of the newly developed code ready to be used by the users.
 
 ![alt text](<Markdown_Images/CICD Diagram (2).png>)
 
@@ -103,7 +108,7 @@ We are going to be working with Jenkins an open source automation server. I am g
 
 ### Step 1.
 
-Login using the below link.
+Login using the below link. Make sure to double check the IP.
 
 http://3.9.14.9:8080/login?from=%2F
 
@@ -213,7 +218,9 @@ You can now return to creating your Jenkins build as the webhook will be associa
 
 ## Jenkins Jobs
 
-Jenkins is able to complete jobs similar to the one setup earlier and then create a build action. This is when one job is complete and was successful it can then start another job. In this process we are going to automate the steps from the push of new code to the deployment of the app automatically..
+Jenkins is able to complete jobs similar to the one setup earlier and then create a build action. This is when one job is complete and was successful it can then start another job. In this process we are going to automate the steps from the push of new code to the deployment of the app automatically.
+
+Here is a breakdown of the jobs 1 to 3 which are part of automating the continuous integration side of the CI/CD pipeline.
 
 ![alt text](Markdown_Images/jobs.png)
 
@@ -264,7 +271,7 @@ Now we need to get the main branch of code and push it to the production environ
 - Now I need to SSH into the instance to see if the job has been successful and the newly merged app code is present
 - Next I need to now prepare the dependencies for the app to run update, upgrade, nginx?, node.js, pm2?
 
-### CD...
+### CD
 
 ### Job 4
 
