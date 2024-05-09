@@ -224,6 +224,8 @@ git checkout -b dev
 
 If the job completes have a new job to merge that new app code on the dev branch with old code on the main branch
 
+Merge option on the job?
+
 ### Job 3
 
 Now we need to get the main branch of code and push it to the production environment.
