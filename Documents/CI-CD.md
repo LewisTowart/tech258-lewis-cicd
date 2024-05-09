@@ -60,9 +60,9 @@ This process also allows for a consistent feedback loop. At the testing stage if
 
 ### Nodes
 
-We are going to set up a Jenkins master node which will be responsible for the automatic deployment of our code assuming it passes testing. This tells the agent node to do the tests and the log file can be accessed from here.
+We are going to use a Jenkins master node which will be responsible for the automatic deployment of our code assuming it passes testing. This tells the agent node to do the tests and the log file can be accessed from here.
 
-We are also going to set up a Jenkins agent node that will responsible for that testing and creating the log file. If any issues arise this log file can be looped back for the developers to fix.
+We are also going to use a Jenkins agent node that will responsible for that testing and creating the log file. If any issues arise this log file can be looped back for the developers to fix.
 
 ## Difference between Delivery and Deployment in prod?
 
