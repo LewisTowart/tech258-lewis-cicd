@@ -39,7 +39,9 @@
 
 ## Project Introduction
 
-My goal with this project is to automate the process from the initial commit to the dev branch on github to the deployment of the newly developed code ready to be used by the users.
+My goal with this project is to automate the process from the initial commit to the dev branch on Github to the deployment of the newly developed code ready to be used by the users. I am going to be using a combination of Github, Jenkins and AWS within my CI/CD pipeline.
+
+Here you can see an image of the overall CI/CD pipe line this is broken down further into the jobs I am going to create further in the document.
 
 ![alt text](<Markdown_Images/CICD Diagram (2).png>)
 
