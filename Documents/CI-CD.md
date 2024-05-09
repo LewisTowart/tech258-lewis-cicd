@@ -20,6 +20,7 @@
     - [Step 8.](#step-8)
     - [Step 9.](#step-9)
   - [Creating a Github and Jenkins webhook](#creating-a-github-and-jenkins-webhook)
+    - [CI](#ci-1)
     - [Step 1.](#step-1-1)
     - [Step 2.](#step-2-1)
     - [Step 3.](#step-3-1)
@@ -27,6 +28,7 @@
     - [Job 1](#job-1)
     - [Job 2](#job-2)
     - [Job 3](#job-3)
+    - [CD](#cd-1)
     - [Job 4](#job-4)
       - [Notes](#notes)
 
@@ -182,6 +184,8 @@ You can go to your github repo and into the webhook setting. Click on edit for t
 
 ## Creating a Github and Jenkins webhook
 
+### CI
+
 ### Step 1.
 
 First we are going to head over to our github repo that we want to associate the webhook with.
@@ -210,7 +214,11 @@ You can now return to creating your Jenkins build as the webhook will be associa
 
 Jenkins is able to complete jobs similar to the one setup earlier and then create a build action. This is when one job is complete and was successful it can then start another job. In this process we are going to automate the steps from the push of new code to the deployment of the app automatically.
 
+![alt text](<Markdown_Images/CICD Diagram (2).png>)
+
 ### Job 1
+
+![alt text](Markdown_Images/job-1.png)
 
 I need to create a Dev branch for the app, make a change locally and test that the job completed.
 
@@ -221,6 +229,8 @@ git checkout -b dev
 ```
 
 ### Job 2
+
+![alt text](Markdown_Images/job-2.png)
 
 If the job completes have a new job to merge that new app code on the dev branch with old code on the main branch
 
@@ -236,6 +246,8 @@ Now we need to get the main branch of code and push it to the production environ
 - I then need the job to clone the app code over from the main repo
 - Now I need to SSH into the instance to see if the job has been successful and the newly merged app code is present
 - Next I need to now prepare the dependencies for the app to run update, upgrade, nginx?, node.js, pm2?
+
+### CD
 
 ### Job 4
 
@@ -302,3 +314,9 @@ add to ci job ssh agent to get the key for aws (Dan has done)
 
 create 4th job in jenkins to deploy the app - run it automatically 
 don't run npm start use in background or will timeout jenkins
+
+Avoid using git commands in the execute shell
+
+need a diagram explaining the process
+
+What if the test isn't successful, could delete the sparta js and it will fail and not trigger the next job
