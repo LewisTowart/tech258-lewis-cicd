@@ -20,6 +20,11 @@
     - [Step 1.](#step-1-1)
     - [Step 2.](#step-2-1)
     - [Step 3.](#step-3-1)
+    - [Job 1](#job-1)
+    - [Job 2](#job-2)
+    - [Job 3](#job-3)
+    - [Job 4](#job-4)
+      - [Notes](#notes)
 
 
 # CI/CD
@@ -72,7 +77,7 @@ If you were to deliver the new code it will not be live for the user to have acc
 
 As for deployment this can be done automatically within the CI/CD pipeline with Jenkins. The code will be deployed and would be live within the prod environment with users being able to access it. This could be something along the lines of a new feature or bug fix.
 
-A real life example would be when a movie has released they are delivered to the cinema weeks before they are actually airing. This can be helpful to check if there are an unforeseen issues with them. When the time comes they will then say this movie is airing come and see if so the user/member of the public can come and watch the film.
+A real life example would be when a movie has released they are delivered to the cinema weeks before they are actually airing. This can be helpful to check if there are any unforeseen issues with them. When the time comes they will then say this movie is airing come and see if so the user/member of the public can come and watch the film.
 
 http://3.9.14.9:8080/login?from=%2F
 
@@ -187,3 +192,87 @@ Finally you are going to want to select when you want this webhook to trigger in
 ![alt text](Markdown_Images/payloadurl.PNG)
 
 You can now return to creating your Jenkins build as the webhook will be associated with it if you've used the corresponding link.
+
+### Job 1
+
+I need to create a Dev branch for the app, make a change locally and test that the job completed.
+
+### Job 2
+
+If the job completes have a new job to merge that new app code on the dev branch with old code on the main branch
+
+### Job 3
+
+Now we need to get the main branch of code and push it to the production environment.
+
+- Create an EC2 instance with Ubuntu 18.04LTS
+- Ensure that I allow the ports for Jenkins 8080 and SSH 22 into the prod env
+- For Jenkins to access the EC2 I need to use the tech258.pem file on the SSH Agent
+- I then need the job to clone the app code over from the main repo
+- Now I need to SSH into the instance to see if the job has been successful and the newly merged app code is present
+- Next I need to now prepare the dependencies for the app to run update, upgrade, nginx?, node.js, pm2?
+
+### Job 4
+
+This job now needs to be able to deploy the app and run it automatically
+
+- I'm going to need port port 80 http and 3000 open for now while testing but I do have the reverse proxy code available
+- I need to ssh into the app and test the deployment manually as I need the app to start in the background as to not timeout jenkins and lock the console
+- I could use pm2 but I need to see what the code was to run in the background I believe it was just one symbol after the run command
+
+
+#### Notes
+
+create a branch if tests pass merge with main
+
+branch dev using git, git checkout dev
+make a change locally, push to git hub if tests passed
+trigger the next job to merge the code from dev to main in your repo
+second job should be triggered automatically if the tests passed
+
+what os jenkins on in desk
+
+build
+execute shell
+
+```
+uname -a
+```
+add post build
+build other projects
+timezone pro
+stable
+
+
+timezone check
+find timezone jenkins server
+shell
+
+```
+date
+```
+
+need to be in dev branch for ci
+lewis-ci-merge into main
+
+third job get the code from main and push it to production
+- create ec2 first with ubuntu 18.04LTS
+- aws will ask jenkins if it has the ssh to log in .pem file on jenkins
+- when we ssh in we have to manually say yes to the fingerprint
+- copy the new code from jenkins to the prod env (manually check and launch (logo change))
+- 
+- install required dependencies  nginx, node.js,
+- cd app
+- npm install
+- npm start
+
+errors - port 22 isnt open - SG required didn't allow jenkins for port 8080
+automate the process of yes to fingerprint on ssh
+copy code is it copied ssh in confirm
+then manually npm install and npm start
+22 ssh, 8080 jenkins, 3000 nod.js, 80 http
+
+add to ci job ssh agent to get the key for aws
+
+create 4th job in jenkins to deploy the app - run it automatically 
+don't run npm start use in background
