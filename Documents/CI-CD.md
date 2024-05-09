@@ -35,6 +35,8 @@
 
 # CI/CD
 
+![alt text](<Markdown_Images/CICD Diagram (2).png>)
+
 ## What is CI/CD?
 
 ![alt text](<Markdown_Images/cicd diagram.png>)
@@ -94,7 +96,6 @@ http://3.9.14.9:8080/login?from=%2F
 Jenkins is a very powerful open source automation server. It can automate the process of building, testing and deploying software which enables teams to quickly and reliably deliver software.
 
 ### Why use Jenkins over other tools? (benefits, differences)
-
 
 ## Create a Jenkins Build
 
@@ -214,7 +215,7 @@ You can now return to creating your Jenkins build as the webhook will be associa
 
 Jenkins is able to complete jobs similar to the one setup earlier and then create a build action. This is when one job is complete and was successful it can then start another job. In this process we are going to automate the steps from the push of new code to the deployment of the app automatically..
 
-![alt text](<Markdown_Images/CICD Diagram (2).png>)
+![alt text](Markdown_Images/jobs.png)
 
 ### Job 1
 
