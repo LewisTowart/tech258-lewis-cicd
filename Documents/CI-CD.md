@@ -266,7 +266,9 @@ Now we need to get the main branch of code and push it to the production environ
 
 First create an EC2 instance using the ami-02f0341ac93c96375 which is using Ubuntu 18.04LTS.
 
-For the security group ensure that you allow the ports for Jenkins 8080, 80 http for Nginx, 3000 for Node.js and 22 for SSH.
+https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#ImageDetails:imageId=ami-02f0341ac93c96375
+
+For the security group ensure that you allow the ports for 8080 for Jenkins, 80 http for Nginx, 3000 for Node.js and 22 for SSH.
 
 Next we need to create a new Jenkins job similar to the steps above name it lewis-cd.
 
