@@ -417,7 +417,7 @@ add to ci job ssh agent to get the key for aws (Dan has done)
 create 4th job in jenkins to deploy the app - run it automatically 
 don't run npm start use in background or will timeout jenkins
 
-Avoid using git commands in the execute shell
+Avoid using git commands in the execute shelll
 
 need a diagram explaining the process
 
