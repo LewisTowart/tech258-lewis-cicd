@@ -7,6 +7,8 @@ sudo apt-get upgrade -y
 
 # install nginx
 sudo apt-get install nginx -y
+sudo sed -i '51s/.*/\t        proxy_pass http:\/\/localhost:3000;/' /etc/nginx/sites-enabled/default
+sudo systemctl restart nginx
 sudo systemctl enable nginx
 
 # visit public ip to ensure nginx is running
