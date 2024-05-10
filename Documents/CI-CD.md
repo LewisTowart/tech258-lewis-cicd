@@ -286,36 +286,83 @@ Select provide node
 
 For Jenkins to access the EC2 I need to use the tech258.pem file on the SSH Agent on our new jenkins job as seen in the picture below
 
-pic
+![alt text](Markdown_Images/ssh-agent.PNG)
 
 Now for the build we are going to break the code down into sections and I'll outline what each part does.
 
 First we need Jenkins to SSH into our EC2 instance bypassing the fingerprint check that occurs.
 
 ```
-ssh -o "StrictHostKeyChecking=no" ubuntu@34.245.6.177 <<EOF
+ssh -o  "StrictHostKeyChecking=no" ubuntu@63.34.171.104 <<EOF
 ```
 
 Next we need to run a update and upgrade which is standard protocol for a new instance.
 
 ```
-sudo apt-get install nginx -y
-sudo systemctl enable nginx
+sudo apt-get update -y
+sudo apt-get upgrade -y
 ```
 
-Now we need to install and enable nginx
+Now we need to install and enable nginx, we should add EOF here to show the end of the bash file.
 
 ```
 sudo apt-get install nginx -y
 sudo systemctl enable nginx
+EOF
 ```
 
 We can check this has worked by going to the public IP of our instance.
 
+Now we need to copy the code from our main branch.
 
-- I then need the job to clone the app code over from the main repo
-- Now I need to SSH into the instance to see if the job has been successful and the newly merged app code is present
-- Next I need to now prepare the dependencies for the app to run update, upgrade, nginx?, node.js v12, pm2?
+```
+rsync -avz -e "ssh -o StrictHostKeyChecking=no" app ubuntu@63.34.171.104:/home/ubuntu
+rsync -avz -e "ssh -o StrictHostKeyChecking=no" environment ubuntu@63.34.171.104:/home/ubuntu
+```
+
+We're going to give Jenkins SSH access again for another bash file.
+
+```
+ssh -o  "StrictHostKeyChecking=no" ubuntu@63.34.171.104 <<EOF
+```
+
+Next we need to install Node.js.
+
+```
+curl -fsSL https://deb.nodesource.com/setup_10.x | sudo -E bash - && sudo apt-get install -y nodejs
+```
+
+We also need to install npm as it isn't available with this version of node.
+
+```
+sudo apt install npm -y
+```
+
+Now we are going to move into our app folder.
+
+```
+cd app
+```
+
+We're going to install the npm packages in this folder.
+
+```
+npm install
+```
+
+Now we need to install pm2 to run our app in the background.
+
+```
+sudo npm install pm2 -g
+```
+
+Finally we're going to kill any running processes and start our app. This is also the EOF of this bash script.
+
+```
+pm2 kill
+pm2 start app.js
+EOF
+```
 
 ### CD
 
