@@ -26,12 +26,9 @@
     - [Step 2.](#step-2-1)
     - [Step 3.](#step-3-1)
   - [Jenkins Jobs](#jenkins-jobs)
-    - [CI](#ci-2)
     - [Job 1](#job-1)
     - [Job 2](#job-2)
     - [Job 3](#job-3)
-    - [CD](#cd-1)
-    - [Job 4](#job-4)
       - [Notes](#notes)
 
 
@@ -227,8 +224,6 @@ Here is a breakdown of the jobs 1 to 3 which are part of automating the continuo
 
 ![alt text](Markdown_Images/jobs.png)
 
-### CI
-
 ### Job 1
 
 ![alt text](Markdown_Images/job-1.png)
@@ -363,18 +358,6 @@ pm2 kill
 pm2 start app.js
 EOF
 ```
-
-### CD
-
-### Job 4
-
-This job now needs to be able to deploy the app and run it automatically
-
-- I'm going to need port port 80 http and 3000 open for now while testing but I do have the reverse proxy code available
-- I need to ssh into the app and test the deployment manually as I need the app to start in the background as to not timeout jenkins and lock the console
-- I could use pm2 but I need to see what the code was to run in the background I believe it was just one symbol after the run command
-- When I've tested it I should be able to basically use my script from running the app
-
 
 #### Notes
 
