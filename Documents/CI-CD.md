@@ -269,12 +269,53 @@ For post build actions we want to set up git publisher and select push only if b
 
 Now we need to get the main branch of code and push it to the production environment.
 
-- Create an EC2 instance with Ubuntu 18.04LTS
-- Ensure that I allow the ports for Jenkins 8080 and SSH 22 into the prod env
-- For Jenkins to access the EC2 I need to use the tech258.pem file on the SSH Agent
+First create an EC2 instance using the ami-02f0341ac93c96375 which is using Ubuntu 18.04LTS.
+
+For the security group ensure that you allow the ports for Jenkins 8080, 80 http for Nginx, 3000 for Node.js and 22 for SSH.
+
+Next we need to create a new Jenkins job similar to the steps above name it lewis-cd.
+
+Options for this one are...
+Sensible description "building cd if tests passed and collect new code from main branch to push to prod on EC2"
+Discard old build, max build to keep 3
+Github project and my link https://github.com/LewisTowart/tech258-lewis-cicd-app.git
+Restrict where the project can be run sparta-ubuntu-node so I can spread the load on the Jenkins server
+Source code git my ssh link git@github.com:LewisTowart/tech258-lewis-cicd-app.git and matching key lewis-jenkins
+Change to branch to */main
+Select provide node
+
+For Jenkins to access the EC2 I need to use the tech258.pem file on the SSH Agent on our new jenkins job as seen in the picture below
+
+pic
+
+Now for the build we are going to break the code down into sections and I'll outline what each part does.
+
+First we need Jenkins to SSH into our EC2 instance bypassing the fingerprint check that occurs.
+
+```
+ssh -o "StrictHostKeyChecking=no" ubuntu@34.245.6.177 <<EOF
+```
+
+Next we need to run a update and upgrade which is standard protocol for a new instance.
+
+```
+sudo apt-get install nginx -y
+sudo systemctl enable nginx
+```
+
+Now we need to install and enable nginx
+
+```
+sudo apt-get install nginx -y
+sudo systemctl enable nginx
+```
+
+We can check this has worked by going to the public IP of our instance.
+
+
 - I then need the job to clone the app code over from the main repo
 - Now I need to SSH into the instance to see if the job has been successful and the newly merged app code is present
-- Next I need to now prepare the dependencies for the app to run update, upgrade, nginx?, node.js, pm2?
+- Next I need to now prepare the dependencies for the app to run update, upgrade, nginx?, node.js v12, pm2?
 
 ### CD
 

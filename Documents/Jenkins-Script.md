@@ -1,0 +1,57 @@
+launch instance on ami given sg 8080, 3000, 80, 22
+script in env folder we're given
+new job on jenkins
+description getting main
+
+change discard old build max 3
+
+https my git hub link from code on git project
+
+dont ned office connector
+git hub ssh link and key
+change to main
+provide node
+add ssh agent tech2358.pem
+
+# bypass fingerprint check
+# ssh into ec2
+ssh -o  "StrictHostKeyChecking=no" ubuntu@63.34.171.104 <<EOF
+# update and upgrade
+sudo apt-get update -y
+sudo apt-get upgrade -y
+
+# install nginx
+sudo apt-get install nginx -y
+sudo systemctl enable nginx
+
+# visit public ip to ensure nginx is running
+
+EOF
+
+# copy new code
+rsync -avz -e "ssh -o StrictHostKeyChecking=no" app ubuntu@63.34.171.104:/home/ubuntu
+rsync -avz -e "ssh -o StrictHostKeyChecking=no" environment ubuntu@63.34.171.104:/home/ubuntu
+
+ssh -o  "StrictHostKeyChecking=no" ubuntu@63.34.171.104 <<EOF
+# install node
+curl -fsSL https://deb.nodesource.com/setup_10.x | sudo -E bash - && sudo apt-get install -y nodejs
+
+# install npm
+sudo apt install npm -y
+
+# cd into app folder
+cd app
+
+# install npm in the app folder
+npm install
+
+# install pm2
+sudo npm install pm2 -g
+
+# stop any previously running versions of the app
+pm2 kill
+
+# start app
+pm2 start app.js
+
+EOF
