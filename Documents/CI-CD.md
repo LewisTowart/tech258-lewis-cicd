@@ -376,7 +376,7 @@ EOF
 
 #### Notes
 
-create a branch if tests pass merge with main
+create a branch if tests pass merge with main.
 
 branch dev using git, git checkout dev
 make a change locally, push to git hub if tests passed
