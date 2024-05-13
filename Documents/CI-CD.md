@@ -381,7 +381,7 @@ create a branch if tests pass merge with main.
 branch dev using git, git checkout dev
 make a change locally, push to git hub if tests passed
 trigger the next job to merge the code from dev to main in your repo
-second job should be triggered automatically if the tests passed
+second job should be triggered automatically if the tests passed.
 
 what os jenkins on in desk
 
