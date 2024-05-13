@@ -30,6 +30,15 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mongodb-org=7.0.6 mongodb
 
 # sudo nano /etc/mongod.conf for manual edit
 
+echo updating...
+sudo apt update -y
+echo done!
+
+# Upgrade
+echo upgrading
+sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
+echo finished upgrading
+
 # Replace the bindIp setting with 0.0.0.0
 sudo sed -i 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/' /etc/mongod.conf
 
