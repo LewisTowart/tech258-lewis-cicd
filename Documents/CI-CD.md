@@ -26,6 +26,14 @@
     - [Step 2.](#step-2-1)
     - [Step 3.](#step-3-1)
   - [Jenkins Jobs](#jenkins-jobs)
+    - [Creating a Jenkins Server](#creating-a-jenkins-server)
+    - [Step 1](#step-1-2)
+    - [Step 2](#step-2-2)
+    - [Step 3](#step-3-2)
+    - [Step 4](#step-4-1)
+    - [Step 5](#step-5-1)
+    - [Step 6](#step-6-1)
+    - [Step 7](#step-7-1)
     - [Job 1](#job-1)
     - [Job 2](#job-2)
     - [Job 3](#job-3)
@@ -230,6 +238,72 @@ Jenkins is able to complete jobs similar to the one setup earlier and then creat
 Here is a breakdown of the jobs 1 to 3 which are part of automating the continuous integration side of the CI/CD pipeline.
 
 ![alt text](Markdown_Images/jobs.png)
+
+### Creating a Jenkins Server
+
+### Step 1
+
+Create a new EC2 instance using https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#ImageDetails:imageId=ami-02f0341ac93c96375
+
+For the Security Group we need to allow port 8080 for Jenkins, port 22 for SSH and port 80 for HTTP.
+
+### Step 2
+
+Now we need to install Java here is some documentation you can use.
+
+https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-18-04#installing-specific-versions-of-openjdk
+
+SSH into your Jenkins EC2 instance. Use the below command to install Java.
+
+```
+sudo apt install default-jre
+```
+
+You can check it has installed by doing the below command.
+
+```
+java -version
+```
+
+### Step 3
+
+Now we need to install Jenkins here is some documentation you can use.
+
+https://www.jenkins.io/doc/book/installing/linux/#long-term-support-release
+
+The code you want to use in a bash script
+
+```
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins
+```
+
+### Step 4
+
+Log into Jenkins using the public IP and 8080 port. Jenkins will ask for a password this is found by doing cat and then the path it gives like the command the below.
+
+```
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
+
+Make an account or login and click install suggested plugins. This include Git which is one of the plugins we will need for Git publisher use.
+
+### Step 5
+
+Now we need to click the bell and click manage. Then navigate plugins and select available plugins. You are going to want Node and SSH Agent.
+
+### Step 6
+
+Now we need to setup Node.js settings. To do this click the bell symbol, then click manage jenkins, the go to tools, scroll to the bottom then select add node js, name appropriately, choose version 13.3.0 which is compatible with our image.
+
+### Step 7
+
+In the manage Jenkins area scroll down to security, scroll down to Git Host Key Verification Configuration and select accept first connection
 
 ### Job 1
 
