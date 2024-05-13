@@ -64,7 +64,7 @@ This is the process of automatically deploying code changes to production or sta
 
 A webhook is a mechanism for automatically triggering an action or notifying an external system when a certain event occurs.
 
-An example of this would be on Amazing when you add an item to the basket it is checking first is that item in stock? If yes allow the item to be added to the basket. Then at the payment stage has the payment gone through? If yes send an email to notify the user of this. Has the item then been sent out for delivery? If yes notify the user that their item is on it's way.
+An example of this would be on Amazon when you add an item to the basket it is checking first is that item in stock? If yes allow the item to be added to the basket. Then at the payment stage has the payment gone through? If yes send an email to notify the user of this. Has the item then been sent out for delivery? If yes notify the user that their item is on it's way.
 
 A webhook is what allows all of these actions to me automated without this it wouldn't feasibly be possible for someone to do this for the billions of orders amazon gets each year.
 
@@ -92,8 +92,6 @@ As for deployment this can be done automatically within the CI/CD pipeline with 
 
 A real life example would be when a movie has released they are delivered to the cinema weeks before they are actually airing. This can be helpful to check if there are any unforeseen issues with them. When the time comes they will then say this movie is airing come and see if so the user/member of the public can come and watch the film.
 
-http://3.9.14.9:8080/login?from=%2F
-
 ## Jenkins
 
 ### What is Jenkins?
@@ -101,6 +99,14 @@ http://3.9.14.9:8080/login?from=%2F
 Jenkins is a very powerful open source automation server. It can automate the process of building, testing and deploying software which enables teams to quickly and reliably deliver software.
 
 ### Why use Jenkins over other tools? (benefits, differences)
+
+Extensibility: Jenkins has a vast ecosystem of plugins that allow users to integrate it with a wide range of technologies and tools, adapting to various workflows and requirements.
+
+Community Support: Being an open-source project with a large and active community, Jenkins receives regular updates, bug fixes, and support from developers worldwide. This community support ensures that Jenkins remains robust and up-to-date.
+
+Flexibility: Jenkins offers flexibility in terms of how jobs are configured and executed. Users can define custom pipelines, build processes, and deployment workflows tailored to their specific needs.
+
+Integration: Jenkins seamlessly integrates with version control systems like Git, build tools like Maven and Gradle, testing frameworks, and deployment tools, enabling end-to-end automation of software delivery pipelines.
 
 ## Create a Jenkins Build
 
@@ -273,13 +279,13 @@ For the security group ensure that you allow the ports for 8080 for Jenkins, 80 
 Next we need to create a new Jenkins job similar to the steps above name it lewis-cd.
 
 Options for this one are...
-Sensible description "building cd if tests passed and collect new code from main branch to push to prod on EC2"
-Discard old build, max build to keep 3
-Github project and my link https://github.com/LewisTowart/tech258-lewis-cicd-app.git
-Restrict where the project can be run sparta-ubuntu-node so I can spread the load on the Jenkins server
-Source code git my ssh link git@github.com:LewisTowart/tech258-lewis-cicd-app.git and matching key lewis-jenkins
-Change to branch to */main
-Select provide node
+* Sensible description "building cd if tests passed and collect new code from main branch to push to prod on EC2"
+* Discard old build, max build to keep 3
+* Github project and my link https://github.com/LewisTowart/tech258-lewis-cicd-app.git
+* Restrict where the project can be run sparta-ubuntu-node so I can spread the load on the Jenkins server
+* Source code git my ssh link git@github.com:LewisTowart/tech258-lewis-cicd-app.git and matching key lewis-jenkins
+* Change to branch to */main
+* Select provide node
 
 For Jenkins to access the EC2 I need to use the tech258.pem file on the SSH Agent on our new jenkins job as seen in the picture below
 
@@ -422,3 +428,4 @@ Avoid using git commands in the execute shelll
 need a diagram explaining the process
 
 What if the test isn't successful, could delete the sparta js and it will fail and not trigger the next job
+
