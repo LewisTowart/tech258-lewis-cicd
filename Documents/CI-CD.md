@@ -417,7 +417,7 @@ third job get the code from main and push it to production
 - install required dependencies  nginx, node.js,.
 - cd app
 - npm install
-- npm start..
+- npm start...
 
 errors - port 22 isnt open - SG required didn't allow jenkins for port 8080
 automate the process of yes to fingerprint on ssh
