@@ -339,7 +339,7 @@ EOF
 
 ### Job 4
 
-Here all we need to do is get the new code from main, install the necessary packages in the app folder, kill any processes that may be running and then finally run the app.
+Here all we need to do is get the new code from main, install the necessary packages in the app folder, kill any processes that may be running and then finally run the app. Make sure to add the SSH agent to the job as well.
 
 First we need to copy the code from our main branch.
 
