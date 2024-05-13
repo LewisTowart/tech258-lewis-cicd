@@ -414,7 +414,7 @@ third job get the code from main and push it to production
 - when we ssh in we have to manually say yes to the fingerprint
 - copy the new code from jenkins to the prod env (manually check and launch (logo change))
 - 
-- install required dependencies  nginx, node.js,
+- install required dependencies  nginx, node.js,.
 - cd app
 - npm install
 - npm start
@@ -435,4 +435,6 @@ Avoid using git commands in the execute shelll
 need a diagram explaining the process
 
 What if the test isn't successful, could delete the sparta js and it will fail and not trigger the next job
+
+http://18.201.233.216:8080/
 
