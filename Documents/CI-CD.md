@@ -29,6 +29,7 @@
     - [Job 1](#job-1)
     - [Job 2](#job-2)
     - [Job 3](#job-3)
+    - [Job 4](#job-4)
       - [Notes](#notes)
 
 
@@ -268,7 +269,7 @@ For post build actions we want to set up git publisher and select push only if b
 
 ### Job 3
 
-Now we need to get the main branch of code and push it to the production environment.
+Now we need to install all of the required packages for the application to start.
 
 First create an EC2 instance using the ami-02f0341ac93c96375 which is using Ubuntu 18.04LTS.
 
@@ -306,28 +307,16 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 ```
 
-Now we need to install and enable nginx, we should add EOF here to show the end of the bash file.
+Now we need to install, add the reverse proxy, restart for the new updates and enable nginx.
 
 ```
 sudo apt-get install nginx -y
+sudo sed -i '51s/.*/\t        proxy_pass http:\/\/localhost:3000;/' /etc/nginx/sites-enabled/default
+sudo systemctl restart nginx
 sudo systemctl enable nginx
-EOF
 ```
 
 We can check this has worked by going to the public IP of our instance.
-
-Now we need to copy the code from our main branch.
-
-```
-rsync -avz -e "ssh -o StrictHostKeyChecking=no" app ubuntu@63.34.171.104:/home/ubuntu
-rsync -avz -e "ssh -o StrictHostKeyChecking=no" environment ubuntu@63.34.171.104:/home/ubuntu
-```
-
-We're going to give Jenkins SSH access again for another bash file.
-
-```
-ssh -o  "StrictHostKeyChecking=no" ubuntu@63.34.171.104 <<EOF
-```
 
 Next we need to install Node.js.
 
@@ -341,6 +330,29 @@ We also need to install npm as it isn't available with this version of node.
 sudo apt install npm -y
 ```
 
+Now we need to install pm2 to run our app in the background.
+
+```
+sudo npm install pm2 -g
+```
+
+### Job 4
+
+Here all we need to do is get the new code from main, install the necessary packages in the app folder, kill any processes that may be running and then finally run the app.
+
+First we need to copy the code from our main branch.
+
+```
+rsync -avz -e "ssh -o StrictHostKeyChecking=no" app ubuntu@63.34.171.104:/home/ubuntu
+rsync -avz -e "ssh -o StrictHostKeyChecking=no" environment ubuntu@63.34.171.104:/home/ubuntu
+```
+
+We're going to give Jenkins SSH access to run the below commands.
+
+```
+ssh -o  "StrictHostKeyChecking=no" ubuntu@63.34.171.104 <<EOF
+```
+
 Now we are going to move into our app folder.
 
 ```
@@ -351,12 +363,6 @@ We're going to install the npm packages in this folder.
 
 ```
 npm install
-```
-
-Now we need to install pm2 to run our app in the background.
-
-```
-sudo npm install pm2 -g
 ```
 
 Finally we're going to kill any running processes and start our app. This is also the EOF of this bash script.
