@@ -334,6 +334,7 @@ Now we need to install pm2 to run our app in the background.
 
 ```
 sudo npm install pm2 -g
+EOF
 ```
 
 ### Job 4
