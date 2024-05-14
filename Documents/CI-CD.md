@@ -34,6 +34,7 @@
     - [Step 5](#step-5-1)
     - [Step 6](#step-6-1)
     - [Step 7](#step-7-1)
+  - [Jobs](#jobs)
     - [Job 1](#job-1)
     - [Job 2](#job-2)
     - [Job 3](#job-3)
@@ -312,6 +313,8 @@ Now we need to setup Node.js settings. To do this click the bell symbol, then cl
 ### Step 7
 
 In the manage Jenkins area scroll down to security, scroll down to Git Host Key Verification Configuration and select accept first connection
+
+## Jobs
 
 ### Job 1
 
