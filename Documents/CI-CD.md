@@ -291,15 +291,23 @@ Log into Jenkins using the public IP and 8080 port. Jenkins will ask for a passw
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
-Make an account or login and click install suggested plugins. This include Git which is one of the plugins we will need for Git publisher use.
+Make an account or login and click install suggested plugins. This includes Git which is one of the plugins we will need for Git publisher use.
 
 ### Step 5
 
 Now we need to click the bell and click manage. Then navigate plugins and select available plugins. You are going to want Node and SSH Agent.
 
+![alt text](manage-jenkins.png)
+
+![alt text](plugins.PNG)
+
+![alt text](Markdown_Images/available-plugins.PNG)
+
 ### Step 6
 
 Now we need to setup Node.js settings. To do this click the bell symbol, then click manage jenkins, the go to tools, scroll to the bottom then select add node js, name appropriately, choose version 13.3.0 which is compatible with our image.
+
+![alt text](Markdown_Images/nodejs-settings.PNG)
 
 ### Step 7
 
